@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
+import InputField from './InputField';
 
 
 const DishUploadForm = () => {
   const [formData, setFormData] = useState({
+    brandID:6,
     food_name: '',
     food_desc: '',
-    price: '',
+    price: 0,
     course: '',
-    currency: '',
+    currency: 'usd',
     dietary_classification: '',
-    discounted_price: '',
-    discount_percent: '',
+    
     serving_size: '',
-    spice_meter: '',
+    spice_meter: 1,
     allergen: '',
     ingredients: '',
-    calories: ''
+    calories: 0
   });
   const [file, setFile] = useState(null);
   
@@ -47,14 +48,14 @@ const DishUploadForm = () => {
       xhr.onload = function () {
         if (xhr.status === 200) {
           let foodData = {
+            brandID: formData.brandID,
             food_name: formData.food_name,
             food_desc: formData.food_desc,
             price: formData.price,
             course: formData.course,
             currency: formData.currency,
             dietary_classification: formData.dietary_classification,
-            discounted_price: formData.discounted_price,
-            discount_percent: formData.discount_percent,
+            
             serving_size: formData.serving_size,
             spice_meter: formData.spice_meter,
             allergen: formData.allergen,
@@ -88,49 +89,27 @@ const DishUploadForm = () => {
     <form 
         className="flex flex-col w-full max-w-3xl m-2"
        onSubmit={(e) => { e.preventDefault(); submitForm(); }}>
-    <label className='text-red-900' htmlFor="food_name">Food Name 2:</label>
-    <input type="text" id="food_name" name="food_name" onChange={handleChange} />
 
-    <label htmlFor="food_desc">Food Description:</label>
-    <input type="text" id="food_desc" name="food_desc" onChange={handleChange} />
+  <InputField label="Brand ID" type="number" name="brandID" handleChange={handleChange} />
+  <InputField label="Food Name" type="text" name="food_name" handleChange={handleChange} />
+  <InputField label="Food Description" type="text" name="food_desc" handleChange={handleChange} />
+  <InputField label="Price" type="number" name="price" handleChange={handleChange} />
+  <InputField label="Course" type="text" name="course" handleChange={handleChange} />
+  <InputField label="Currency" type="text" name="currency" handleChange={handleChange} />
+  <InputField label="Dietary Classification" type="text" name="dietary_classification" handleChange={handleChange} />
+  
+  <InputField label="Serving Size" type="text" name="serving_size" handleChange={handleChange} />
+  <InputField label="Spice Meter" type="text" name="spice_meter" handleChange={handleChange} />
+  <InputField label="Allergen" type="text" name="allergen" handleChange={handleChange} />
+  <InputField label="Ingredients" type="text" name="ingredients" handleChange={handleChange} />
+  <InputField label="Calories" type="number" name="calories" handleChange={handleChange} />
 
-    <label htmlFor="price">Price:</label>
-    <input type="number" id="price" name="price" onChange={handleChange} />
-
-    <label htmlFor="course">Course:</label>
-    <input type="text" id="course" name="course" onChange={handleChange} />
-
-    <label htmlFor="currency">Currency:</label>
-    <input type="text" id="currency" name="currency" onChange={handleChange} />
-
-    <label htmlFor="dietary_classification">Dietary Classification:</label>
-    <input type="text" id="dietary_classification" name="dietary_classification" onChange={handleChange} />
-
-    <label htmlFor="discounted_price">Discounted Price:</label>
-    <input type="text" id="discounted_price" name="discounted_price" onChange={handleChange} />
-
-    <label htmlFor="discount_percent">Discount Percent:</label>
-    <input type="text" id="discount_percent" name="discount_percent" onChange={handleChange} />
-
-    <label htmlFor="serving_size">Serving Size:</label>
-    <input type="text" id="serving_size" name="serving_size" onChange={handleChange} />
-
-    <label htmlFor="spice_meter">Spice Meter:</label>
-    <input type="text" id="spice_meter" name="spice_meter" onChange={handleChange} />
-
-    <label htmlFor="allergen">Allergen:</label>
-    <input type="text" id="allergen" name="allergen" onChange={handleChange} />
-
-    <label htmlFor="ingredients">Ingredients:</label>
-    <input type="text" id="ingredients" name="ingredients" onChange={handleChange} />
-
-    <label htmlFor="calories">Calories:</label>
-    <input type="text" id="calories" name="calories" onChange={handleChange} />
 
     <label htmlFor="file">Video File:</label>
     <input type="file" id="file" name="file" onChange={handleFileChange} />
 
-    <input type="submit" id="submitButton" value="Submit" />
+    <input type="submit" id="submitButton" value="Submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
+
     <div id="uploadStatus"></div>
   </form>
   );

@@ -4,7 +4,7 @@ import DishUploadForm from './components/DishUploadForm';
 
 function App() {
   return (
-    <div className='bg-red-500'>
+    <div >
       <header>
         <h1>Dish Upload</h1>
       </header>
