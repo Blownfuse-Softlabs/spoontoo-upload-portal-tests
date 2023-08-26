@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputField from './InputField';
+import Dropdown from './Dropdown';
 
 
 const DishUploadForm = () => {
@@ -18,6 +19,20 @@ const DishUploadForm = () => {
     ingredients: '',
     calories: 0
   });
+
+  const courses = [
+    "Hors d'oeuvre",
+    "Soup",
+    "Appetizer",
+    "Salad",
+    "Fish",
+    "Main Course",
+    "Palate Cleanser",
+    "Second Main Course",
+    "Dessert",
+    "Mignardise"
+  ];
+  
   const [file, setFile] = useState(null);
   
   const handleChange = (event) => {
@@ -94,12 +109,12 @@ const DishUploadForm = () => {
   <InputField label="Food Name" type="text" name="food_name" handleChange={handleChange} />
   <InputField label="Food Description" type="text" name="food_desc" handleChange={handleChange} />
   <InputField label="Price" type="number" name="price" handleChange={handleChange} />
-  <InputField label="Course" type="text" name="course" handleChange={handleChange} />
+  <Dropdown label="Course" name="course" options={courses} handleChange={handleChange} />
   <InputField label="Currency" type="text" name="currency" handleChange={handleChange} />
   <InputField label="Dietary Classification" type="text" name="dietary_classification" handleChange={handleChange} />
   
   <InputField label="Serving Size" type="text" name="serving_size" handleChange={handleChange} />
-  <InputField label="Spice Meter" type="text" name="spice_meter" handleChange={handleChange} />
+  <InputField label="Spice Meter" type="number" name="spice_meter" handleChange={handleChange} />
   <InputField label="Allergen" type="text" name="allergen" handleChange={handleChange} />
   <InputField label="Ingredients" type="text" name="ingredients" handleChange={handleChange} />
   <InputField label="Calories" type="number" name="calories" handleChange={handleChange} />
